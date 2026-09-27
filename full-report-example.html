@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Romanov VIN — полный отчёт (пример)</title>
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --card-bg: #ffffff;
+    --text: #16181c;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #0f766e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 16px 16px 40px; }
+  .brand { display: flex; align-items: center; gap: 8px; padding: 12px 0 20px; font-weight: 700; font-size: 15px; color: var(--muted); }
+  .tier-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff; font-size: 12px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px; margin-bottom: 10px;
+  }
+  .header { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .vin-chip {
+    display: inline-block; font-family: "SF Mono", Menlo, monospace; font-size: 13px;
+    color: var(--muted); background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px 8px; margin-bottom: 16px;
+  }
+  .risk-banner {
+    background: #dc2626; color: #fff; border-radius: 12px; padding: 18px 20px;
+    font-size: 18px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+  }
+  .risk-note { font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+  .section { margin-bottom: 22px; }
+  .section-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--muted); margin-bottom: 8px; padding-left: 2px;
+  }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+  .card-title { font-weight: 600; font-size: 15px; }
+  .card-subtitle { display: block; font-weight: 400; font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .pill { flex-shrink: 0; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .card-detail { font-size: 13px; color: var(--muted); }
+  .card-expandable summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+  .card-expandable summary::-webkit-details-marker { display: none; }
+  .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+  .card-toggle { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .card-toggle .lbl-hide { display: none; }
+  .card-expandable[open] .card-toggle .lbl-show { display: none; }
+  .card-expandable[open] .card-toggle .lbl-hide { display: inline; }
+  .card-toggle .chevron { transition: transform 0.15s ease; font-size: 13px; }
+  .card-expandable[open] .card-toggle .chevron { transform: rotate(90deg); }
+  .card-extra { margin: 10px 0 0; padding-left: 18px; font-size: 13px; }
+  .card-extra li { margin-bottom: 6px; }
+  .card-extra li:last-child { margin-bottom: 0; }
+  .muted { color: var(--muted); }
+  .footer { margin-top: 24px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1115; --card-bg: #191c22; --text: #f2f3f5; --muted: #9aa0aa; --border: #2a2e37; --accent: #14b8a6; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">🚗 Romanov VIN</div>
+  <div class="tier-badge">⭐ ПОЛНЫЙ ОТЧЁТ · 16 источников</div>
+  <div class="header">🚗 Toyota Camry 2018</div>
+  <div class="vin-chip">VIN: XW7BF3HK10S100393</div>
+  <div class="risk-banner">🔴 ВЫСОКИЙ РИСК</div>
+  <div class="risk-note">Индикатор риска считается по 5 ключевым источникам (регистрация, залог, ДТП, ОСАГО, пробег) — остальные 11 источников ниже носят информационный характер и показываются отдельными карточками.</div>
+  <div class="section">
+  <div class="section-title">Юридический статус</div>
+  <details class="card card-expandable">
+  <summary>
+    <div class="card-title">Регистрация и ограничения<span class="card-subtitle">ГИБДД</span></div>
+    <div class="card-right">
+      <div class="pill" style="background:#dc26261a;color:#dc2626">Ограничения/аресты: 1</div>
+      <span class="card-toggle"><span class="lbl-show">Показать</span><span class="lbl-hide">Свернуть</span><span class="chevron">›</span></span>
+    </div>
+  </summary>
+  <div class="card-detail">Владельцев: 3. Статус: на учёте.</div>
+  <ul class="card-extra"><li>арест, 01.03.2024, ФССП по Ульяновской обл., Ульяновская обл.</li></ul>
+</details><div class="card">
+  <div class="card-top">
+    <div class="card-title">Арбитражные дела<span class="card-subtitle">Картотека арбитражных дел</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Не найдено</div>
+  </div>
+  <div class="card-detail">Собственник не фигурирует в арбитражных делах, связанных с автомобилем.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Растаможка<span class="card-subtitle">ФТС</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Растаможен</div>
+  </div>
+  <div class="card-detail">Ввезён и растаможен в РФ, дата оформления: 12.05.2018.</div>
+</div>
+</div><div class="section">
+  <div class="section-title">Обременения</div>
+  <div class="card">
+  <div class="card-top">
+    <div class="card-title">Залог<span class="card-subtitle">Реестр залогов ФНП</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Не найден</div>
+  </div>
+  <div class="card-detail">По реестру ФНП записей не найдено.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Лизинг<span class="card-subtitle">Реестр лизинговых компаний</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Не найден</div>
+  </div>
+  <div class="card-detail">Действующих договоров лизинга не найдено.</div>
+</div>
+</div><div class="section">
+  <div class="section-title">Эксплуатация</div>
+  <details class="card card-expandable">
+  <summary>
+    <div class="card-title">ДТП<span class="card-subtitle">ГИБДД, реальное время</span></div>
+    <div class="card-right">
+      <div class="pill" style="background:#dc26261a;color:#dc2626">Найдено ДТП: 2</div>
+      <span class="card-toggle"><span class="lbl-show">Показать</span><span class="lbl-hide">Свернуть</span><span class="chevron">›</span></span>
+    </div>
+  </summary>
+  <div class="card-detail">Есть записи со значительными повреждениями.</div>
+  <ul class="card-extra"><li>02.06.2023, столкновение, г. Ульяновск, ул. Урицкого<br><span class="muted">Повреждения: значительное</span></li><li>19.11.2022, наезд на препятствие, г. Ульяновск, Московское шоссе</li></ul>
+</details><div class="card">
+  <div class="card-top">
+    <div class="card-title">Штрафы ГИБДД<span class="card-subtitle">Неоплаченные штрафы</span></div>
+    <div class="pill" style="background:#d977061a;color:#d97706">Найдено: 3 на 15 000 ₽</div>
+  </div>
+  <div class="card-detail">Есть неоплаченные штрафы — риск для нового собственника до переоформления.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Такси<span class="card-subtitle">Реестр такси</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Не работал в такси</div>
+  </div>
+  <div class="card-detail">В реестре такси-перевозчиков не значится.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Каршеринг<span class="card-subtitle">Реестр каршеринга</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Не найден</div>
+  </div>
+  <div class="card-detail">В реестре каршеринговых операторов не значится.</div>
+</div>
+</div><div class="section">
+  <div class="section-title">Страхование и техсостояние</div>
+  <div class="card">
+  <div class="card-top">
+    <div class="card-title">Страховая история<span class="card-subtitle">ОСАГО</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Полис действует</div>
+  </div>
+  <div class="card-detail">СК Ингосстрах, период: 14.01.2026–13.01.2027</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Пробег<span class="card-subtitle">Последняя диагностика</span></div>
+    <div class="pill" style="background:#2563eb1a;color:#2563eb">187 340 км</div>
+  </div>
+  <div class="card-detail">По последней диагностике на 15.02.2026</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Сервисная история<span class="card-subtitle">Записи официального дилера</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">8 записей</div>
+  </div>
+  <div class="card-detail">Последнее ТО у официального дилера: 10.01.2026.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Отзывные кампании<span class="card-subtitle">Производитель</span></div>
+    <div class="pill" style="background:#16a34a1a;color:#16a34a">Нет открытых кампаний</div>
+  </div>
+  <div class="card-detail">Действующих отзывных кампаний производителя не найдено.</div>
+</div>
+</div><div class="section">
+  <div class="section-title">Рыночная информация</div>
+  <div class="card">
+  <div class="card-top">
+    <div class="card-title">Рыночная оценка<span class="card-subtitle">По аналогичным объявлениям</span></div>
+    <div class="pill" style="background:#2563eb1a;color:#2563eb">≈ 1 380 000 ₽</div>
+  </div>
+  <div class="card-detail">Оценка сформирована по актуальным объявлениям с похожими характеристиками.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">История объявлений<span class="card-subtitle">Площадки объявлений</span></div>
+    <div class="pill" style="background:#d977061a;color:#d97706">Выставлялся 3 раза</div>
+  </div>
+  <div class="card-detail">За последние 2 года автомобиль выставлялся на продажу 3 раза — стоит уточнить причину у продавца.</div>
+</div><div class="card">
+  <div class="card-top">
+    <div class="card-title">Фото автомобиля<span class="card-subtitle">По последнему объявлению</span></div>
+    <div class="pill" style="background:#2563eb1a;color:#2563eb">Найдено фото: 12</div>
+  </div>
+  <div class="card-detail">Фотографии из последнего активного объявления о продаже.</div>
+</div>
+</div>
+  <div class="footer">
+    Отчёт сформирован 27.09.2026 22:40 по данным avtovincod.ru (ГИБДД, ФНП, РСА, ФТС и др.).
+    Сервис агрегирует официальные и открытые источники и не несёт ответственности за их полноту.
+  </div>
+</div>
+</body>
+</html>
